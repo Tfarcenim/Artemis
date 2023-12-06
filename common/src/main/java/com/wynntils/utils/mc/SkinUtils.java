@@ -30,13 +30,13 @@ public final class SkinUtils {
         ClientPacketListener connection = McUtils.mc().getConnection();
 
         if (connection == null) {
-            return DefaultPlayerSkin.getDefaultTexture();
+            return DefaultPlayerSkin.getDefaultSkin();
         }
         PlayerInfo playerInfo = connection.getPlayerInfo(uuid);
         if (playerInfo == null) {
-            return DefaultPlayerSkin.getDefaultTexture();
+            return DefaultPlayerSkin.getDefaultSkin();
         }
 
-        return playerInfo.getSkin().texture();
+        return playerInfo.getSkinLocation();//todo?
     }
 }

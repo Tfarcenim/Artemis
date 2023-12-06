@@ -238,6 +238,6 @@ public class InputTranscriptionFeature extends Feature {
 
         chatInput.setValue(newInput);
 
-        chatInput.moveCursorTo(newCursorPos, false);
+        chatInput.moveCursorTo(newCursorPos);
     }
 }

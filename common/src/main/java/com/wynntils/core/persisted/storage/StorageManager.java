@@ -6,7 +6,6 @@ package com.wynntils.core.persisted.storage;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.mojang.util.UndashedUuid;
 import com.wynntils.core.WynntilsMod;
 import com.wynntils.core.components.Manager;
 import com.wynntils.core.components.Managers;
@@ -47,7 +46,7 @@ public final class StorageManager extends Manager {
         super(List.of());
 
         userStorageFile = new File(
-                STORAGE_DIR, UndashedUuid.toString(McUtils.mc().getUser().getProfileId()) + FILE_SUFFIX);
+                STORAGE_DIR, McUtils.mc().getUser().getProfileId() + FILE_SUFFIX);
     }
 
     public void initComponents() {

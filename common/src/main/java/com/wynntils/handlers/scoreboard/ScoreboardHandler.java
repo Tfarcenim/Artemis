@@ -27,7 +27,6 @@ import java.util.regex.Pattern;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.scores.DisplaySlot;
 import net.minecraft.world.scores.Objective;
 import net.minecraft.world.scores.Score;
 import net.minecraft.world.scores.Scoreboard;
@@ -329,7 +328,7 @@ public final class ScoreboardHandler extends Handler {
                 SCOREBOARD_TITLE_COMPONENT,
                 ObjectiveCriteria.RenderType.INTEGER);
 
-        scoreboard.setDisplayObjective(DisplaySlot.SIDEBAR, wynntilsObjective);
+        scoreboard.setDisplayObjective(Scoreboard.DISPLAY_SLOT_SIDEBAR, wynntilsObjective);
 
         if (scoreboardSegments.stream().map(Pair::value).noneMatch(ScoreboardSegment::isVisible)) return;
 

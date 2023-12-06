@@ -290,12 +290,12 @@ public class TradeMarketSearchResultScreen extends WynntilsContainerScreen<Chest
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double deltaX, double deltaY) {
+    public boolean mouseScrolled(double mouseX, double mouseY, double deltaY) {
         // Signum so we only scroll 1 item at a time
         double scrollValue = -Math.signum(deltaY);
         scroll((int) scrollValue);
 
-        return super.mouseScrolled(mouseX, mouseY, deltaX, deltaY);
+        return super.mouseScrolled(mouseX, mouseY,deltaY);
     }
 
     public void setSearchQuery(String query) {

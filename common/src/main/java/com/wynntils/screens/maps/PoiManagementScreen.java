@@ -504,12 +504,12 @@ public final class PoiManagementScreen extends WynntilsGridLayoutScreen {
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double deltaX, double deltaY) {
+    public boolean mouseScrolled(double mouseX, double mouseY, double deltaY) {
         double scrollValue = -Math.signum(deltaY);
         scroll((int) scrollValue);
-
         return true;
     }
+
 
     public void selectPoi(CustomPoi selectedPoi) {
         boolean addedPoi = true;

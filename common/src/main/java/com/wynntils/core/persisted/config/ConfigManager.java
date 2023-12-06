@@ -7,7 +7,6 @@ package com.wynntils.core.persisted.config;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.mojang.util.UndashedUuid;
 import com.wynntils.core.WynntilsMod;
 import com.wynntils.core.components.Manager;
 import com.wynntils.core.components.Managers;
@@ -44,7 +43,7 @@ public final class ConfigManager extends Manager {
         super(List.of());
 
         userConfig = new File(
-                CONFIG_DIR, UndashedUuid.toString(McUtils.mc().getUser().getProfileId()) + FILE_SUFFIX);
+                CONFIG_DIR, McUtils.mc().getUser().getProfileId() + FILE_SUFFIX);
     }
 
     public void init() {

@@ -32,10 +32,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.core.Position;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public final class TerritoryModel extends Model {
@@ -110,12 +110,12 @@ public final class TerritoryModel extends Model {
     public void onAdvancementUpdate(AdvancementUpdateEvent event) {
         Map<String, TerritoryInfo> tempMap = new HashMap<>();
 
-        for (AdvancementHolder added : event.getAdded()) {
-            Advancement advancement = added.value();
+        for (Map.Entry<ResourceLocation,Advancement.Builder> added : event.getAdded().entrySet()) {
+            Advancement advancement = added.getValue().build(added.getKey());
 
-            if (advancement.display().isEmpty()) continue;
+            if (advancement.getDisplay().isHidden()) continue;
 
-            DisplayInfo displayInfo = advancement.display().get();
+            DisplayInfo displayInfo = advancement.getDisplay();
             String territoryName = StyledText.fromComponent(displayInfo.getTitle())
                     .replaceAll("\\[", "")
                     .replaceAll("\\]", "")

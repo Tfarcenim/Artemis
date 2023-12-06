@@ -222,7 +222,7 @@ public final class CharacterSelectorScreen extends WynntilsScreen {
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double deltaX, double deltaY) {
+    public boolean mouseScrolled(double mouseX, double mouseY, double deltaY) {
         setScrollOffset((int) deltaY);
         return true;
     }

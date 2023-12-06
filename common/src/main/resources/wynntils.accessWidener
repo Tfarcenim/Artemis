@@ -5,17 +5,17 @@ accessible class net/minecraft/network/protocol/game/ClientboundBossEventPacket$
 accessible class net/minecraft/network/protocol/game/ClientboundBossEventPacket$Operation
 accessible class net/minecraft/network/protocol/game/ClientboundBossEventPacket$OperationType
 accessible class net/minecraft/network/protocol/game/ClientboundBossEventPacket$UpdateNameOperation
-accessible class net/minecraft/server/packs/FilePackResources$SharedZipFileAccess
+#accessible class net/minecraft/server/packs/FilePackResources$SharedZipFileAccess
 accessible field net/minecraft/client/KeyMapping key Lcom/mojang/blaze3d/platform/InputConstants$Key;
 accessible field net/minecraft/client/Minecraft gui Lnet/minecraft/client/gui/Gui;
 accessible field net/minecraft/client/OptionInstance value Ljava/lang/Object;
 accessible field net/minecraft/client/gui/Gui chat Lnet/minecraft/client/gui/components/ChatComponent;
 accessible field net/minecraft/client/gui/components/AbstractSelectionList hovered Lnet/minecraft/client/gui/components/AbstractSelectionList$Entry;
 accessible field net/minecraft/client/gui/components/BossHealthOverlay events Ljava/util/Map;
-accessible field net/minecraft/client/gui/components/Checkbox CHECKBOX_SELECTED_HIGHLIGHTED_SPRITE Lnet/minecraft/resources/ResourceLocation;
-accessible field net/minecraft/client/gui/components/Checkbox CHECKBOX_SELECTED_SPRITE Lnet/minecraft/resources/ResourceLocation;
-accessible field net/minecraft/client/gui/components/Checkbox CHECKBOX_HIGHLIGHTED_SPRITE Lnet/minecraft/resources/ResourceLocation;
-accessible field net/minecraft/client/gui/components/Checkbox CHECKBOX_SPRITE Lnet/minecraft/resources/ResourceLocation;
+#accessible field net/minecraft/client/gui/components/Checkbox CHECKBOX_SELECTED_HIGHLIGHTED_SPRITE Lnet/minecraft/resources/ResourceLocation;
+#accessible field net/minecraft/client/gui/components/Checkbox CHECKBOX_SELECTED_SPRITE Lnet/minecraft/resources/ResourceLocation;
+#accessible field net/minecraft/client/gui/components/Checkbox CHECKBOX_HIGHLIGHTED_SPRITE Lnet/minecraft/resources/ResourceLocation;
+#accessible field net/minecraft/client/gui/components/Checkbox CHECKBOX_SPRITE Lnet/minecraft/resources/ResourceLocation;
 accessible field net/minecraft/client/gui/components/Checkbox selected Z
 accessible field net/minecraft/client/gui/components/Checkbox showLabel Z
 accessible field net/minecraft/client/gui/screens/ChatScreen commandSuggestions Lnet/minecraft/client/gui/components/CommandSuggestions;
@@ -55,7 +55,7 @@ accessible method net/minecraft/client/renderer/blockentity/BeaconRenderer rende
 accessible method net/minecraft/client/renderer/entity/EntityRenderer renderNameTag (Lnet/minecraft/world/entity/Entity;Lnet/minecraft/network/chat/Component;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;I)V
 accessible method net/minecraft/client/resources/DownloadedPackSource checkHash (Ljava/lang/String;Ljava/io/File;)Z
 accessible method net/minecraft/server/packs/FilePackResources <init> (Ljava/lang/String;Lnet/minecraft/server/packs/FilePackResources$SharedZipFileAccess;ZLjava/lang/String;)V
-accessible method net/minecraft/server/packs/FilePackResources$SharedZipFileAccess <init> (Ljava/io/File;)V
+#accessible method net/minecraft/server/packs/FilePackResources$SharedZipFileAccess <init> (Ljava/io/File;)V
 accessible method net/minecraft/server/packs/repository/Pack <init> (Ljava/lang/String;ZLnet/minecraft/server/packs/repository/Pack$ResourcesSupplier;Lnet/minecraft/network/chat/Component;Lnet/minecraft/server/packs/repository/Pack$Info;Lnet/minecraft/server/packs/repository/Pack$Position;ZLnet/minecraft/server/packs/repository/PackSource;)V
 accessible method net/minecraft/world/entity/Entity setSharedFlag (IZ)V
 accessible method net/minecraft/world/item/ItemStack getHideFlags ()I
