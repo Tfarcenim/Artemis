@@ -178,7 +178,7 @@ public abstract class WynntilsListScreen<E, B extends WynntilsButton> extends Wy
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double deltaX, double deltaY) {
+    public boolean mouseScrolled(double mouseX, double mouseY, double deltaY) {
         // Usually, mouse scroll wheel delta is always (-)1
         if (Math.abs(deltaY) == 1) {
             setCurrentPage(getCurrentPage() - (int) deltaY);

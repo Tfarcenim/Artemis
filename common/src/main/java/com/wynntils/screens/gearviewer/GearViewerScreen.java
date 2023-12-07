@@ -133,13 +133,13 @@ public final class GearViewerScreen extends WynntilsContainerScreen<GearViewerMe
                 guiGraphics,
                 renderX,
                 renderY,
-                renderX + renderWidth,
-                renderY + renderHeight,
+              //  renderX + renderWidth,
+              //  renderY + renderHeight,
                 30,
-                0.2f,
+            //    0.2f,
                 mouseX,
                 mouseY,
-                player);
+                player);//todo
     }
 
     @Override
