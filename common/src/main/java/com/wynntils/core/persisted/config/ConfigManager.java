@@ -42,8 +42,7 @@ public final class ConfigManager extends Manager {
     public ConfigManager() {
         super(List.of());
 
-        userConfig = new File(
-                CONFIG_DIR, McUtils.mc().getUser().getProfileId() + FILE_SUFFIX);
+        userConfig = new File(CONFIG_DIR, McUtils.mc().getUser().getProfileId() + FILE_SUFFIX);
     }
 
     public void init() {
