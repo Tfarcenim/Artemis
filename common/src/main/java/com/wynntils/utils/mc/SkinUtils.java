@@ -37,6 +37,6 @@ public final class SkinUtils {
             return DefaultPlayerSkin.getDefaultSkin();
         }
 
-        return playerInfo.getSkinLocation();//todo?
+        return playerInfo.getSkinLocation(); // todo?
     }
 }

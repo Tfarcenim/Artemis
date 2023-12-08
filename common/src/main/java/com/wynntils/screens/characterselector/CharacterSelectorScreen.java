@@ -34,7 +34,6 @@ import net.minecraft.client.gui.components.Renderable;
 import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.network.chat.Component;
 import org.lwjgl.glfw.GLFW;
 
@@ -415,7 +414,7 @@ public final class CharacterSelectorScreen extends WynntilsScreen {
                 renderY + renderHeight,
                 scale,
                 0,
-                renderX + renderWidth / 2,//todo?
+                renderX + renderWidth / 2, // todo?
                 renderY + renderHeight / 2,
                 McUtils.player());
     }

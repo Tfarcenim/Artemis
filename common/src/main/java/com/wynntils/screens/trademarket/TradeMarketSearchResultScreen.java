@@ -295,7 +295,7 @@ public class TradeMarketSearchResultScreen extends WynntilsContainerScreen<Chest
         double scrollValue = -Math.signum(deltaY);
         scroll((int) scrollValue);
 
-        return super.mouseScrolled(mouseX, mouseY,deltaY);
+        return super.mouseScrolled(mouseX, mouseY, deltaY);
     }
 
     public void setSearchQuery(String query) {

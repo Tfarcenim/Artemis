@@ -9,7 +9,6 @@ import com.wynntils.mc.event.ConnectionEvent;
 import com.wynntils.mc.event.ResourcePackEvent;
 import com.wynntils.utils.mc.McUtils;
 import net.minecraft.client.multiplayer.ClientPacketListener;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundDisconnectPacket;
 import net.minecraft.network.protocol.game.ClientboundResourcePackPacket;
 import net.minecraft.network.protocol.game.ServerboundResourcePackPacket;
@@ -20,10 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientPacketListener.class)
 public abstract class ClientCommonPacketListenerImplMixin {
-    @Inject(
-            method = "handleResourcePack",
-            at = @At("HEAD"),
-            cancellable = true)
+    @Inject(method = "handleResourcePack", at = @At("HEAD"), cancellable = true)
     private void handleResourcePackPre(ClientboundResourcePackPacket packet, CallbackInfo ci) {
         ResourcePackEvent event = new ResourcePackEvent(packet.getUrl(), packet.getHash(), packet.isRequired());
         MixinHelper.post(event);
@@ -34,9 +30,7 @@ public abstract class ClientCommonPacketListenerImplMixin {
         }
     }
 
-    @Inject(
-            method = "handleDisconnect",
-            at = @At("HEAD"))
+    @Inject(method = "handleDisconnect", at = @At("HEAD"))
     private void handleDisconnectPre(ClientboundDisconnectPacket packet, CallbackInfo ci) {
         // Unexpected disconnect
         MixinHelper.post(new ConnectionEvent.DisconnectedEvent());

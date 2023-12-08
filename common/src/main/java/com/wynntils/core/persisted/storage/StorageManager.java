@@ -45,8 +45,7 @@ public final class StorageManager extends Manager {
     public StorageManager() {
         super(List.of());
 
-        userStorageFile = new File(
-                STORAGE_DIR, McUtils.mc().getUser().getProfileId() + FILE_SUFFIX);
+        userStorageFile = new File(STORAGE_DIR, McUtils.mc().getUser().getProfileId() + FILE_SUFFIX);
     }
 
     public void initComponents() {

@@ -510,7 +510,6 @@ public final class PoiManagementScreen extends WynntilsGridLayoutScreen {
         return true;
     }
 
-
     public void selectPoi(CustomPoi selectedPoi) {
         boolean addedPoi = true;
 

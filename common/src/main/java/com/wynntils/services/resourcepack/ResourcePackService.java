@@ -16,10 +16,8 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
-import net.minecraft.SharedConstants;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.FilePackResources;
-import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackCompatibility;
 import net.minecraft.server.packs.repository.PackSource;
@@ -116,7 +114,7 @@ public final class ResourcePackService extends Service {
 
         if (!file.exists()) return null;
 
-        Pack.ResourcesSupplier resourcesSupplier = s -> new FilePackResources("WynnUtils Resource Pack",file, false);
+        Pack.ResourcesSupplier resourcesSupplier = s -> new FilePackResources("WynnUtils Resource Pack", file, false);
 
         Pack.Info info = Pack.readPackInfo("server", resourcesSupplier);
         return new PreloadedPack(
@@ -150,7 +148,16 @@ public final class ResourcePackService extends Service {
                 boolean fixedPosition,
                 PackSource packSource,
                 String hash) {
-            super(id, required, resourcesSupplier, component, info, packCompatibility,defaultPosition, fixedPosition, packSource);
+            super(
+                    id,
+                    required,
+                    resourcesSupplier,
+                    component,
+                    info,
+                    packCompatibility,
+                    defaultPosition,
+                    fixedPosition,
+                    packSource);
             this.hash = hash;
         }
 

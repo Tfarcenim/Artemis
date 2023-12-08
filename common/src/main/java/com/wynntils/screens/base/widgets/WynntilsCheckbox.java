@@ -42,7 +42,6 @@ public class WynntilsCheckbox extends Checkbox {
 
     private static final ResourceLocation TEXTURE = new ResourceLocation("textures/gui/checkbox.png");
 
-
     @Override
     public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         RenderSystem.enableDepthTest();
@@ -51,7 +50,16 @@ public class WynntilsCheckbox extends Checkbox {
         RenderSystem.enableBlend();
         ResourceLocation resourceLocation;
 
-        guiGraphics.blit(TEXTURE, this.getX(), this.getY(), this.isFocused() ? 20.0f : 0.0f, this.selected ? 20.0f : 0.0f, 20, this.height, 64, 64);
+        guiGraphics.blit(
+                TEXTURE,
+                this.getX(),
+                this.getY(),
+                this.isFocused() ? 20.0f : 0.0f,
+                this.selected ? 20.0f : 0.0f,
+                20,
+                this.height,
+                64,
+                64);
         guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
         if (this.showLabel) {
             int start = this.getX() + this.width + 2;

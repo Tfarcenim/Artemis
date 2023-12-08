@@ -6,7 +6,6 @@ package com.wynntils.mc.event;
 
 import java.util.Map;
 import java.util.Set;
-
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.resources.ResourceLocation;

@@ -128,7 +128,7 @@ public final class ChangelogScreen extends WynntilsScreen implements WynntilsPag
             setCurrentPage(getCurrentPage() + 1);
         }
 
-        return super.mouseScrolled(mouseX, mouseY,  deltaY);
+        return super.mouseScrolled(mouseX, mouseY, deltaY);
     }
 
     private void calculateRenderTasks() {

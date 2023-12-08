@@ -24,7 +24,6 @@ import java.util.Collections;
 import java.util.List;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
@@ -139,7 +138,7 @@ public final class GearViewerScreen extends WynntilsContainerScreen<GearViewerMe
                 0.2f,
                 mouseX,
                 mouseY,
-                player);//todo
+                player); // todo
     }
 
     @Override

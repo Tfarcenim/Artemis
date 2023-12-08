@@ -110,7 +110,8 @@ public final class TerritoryModel extends Model {
     public void onAdvancementUpdate(AdvancementUpdateEvent event) {
         Map<String, TerritoryInfo> tempMap = new HashMap<>();
 
-        for (Map.Entry<ResourceLocation,Advancement.Builder> added : event.getAdded().entrySet()) {
+        for (Map.Entry<ResourceLocation, Advancement.Builder> added :
+                event.getAdded().entrySet()) {
             Advancement advancement = added.getValue().build(added.getKey());
 
             if (advancement.getDisplay().isHidden()) continue;
