@@ -33,7 +33,7 @@ public abstract class ConnectionMixin {
             method = "sendPacket",
             at = @At("HEAD"),
             cancellable = true)
-    private void sendPre(Packet<?> packet, PacketSendListener sendListener, boolean flush, CallbackInfo ci) {
+    private void sendPre(Packet<?> packet, PacketSendListener sendListener, CallbackInfo ci) {
         PacketEvent.PacketSentEvent<? extends Packet<?>> event = new PacketEvent.PacketSentEvent<>(packet);
         MixinHelper.postAlways(event);
         if (event.isCanceled()) {

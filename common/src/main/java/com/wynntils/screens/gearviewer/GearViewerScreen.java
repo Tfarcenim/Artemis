@@ -129,14 +129,14 @@ public final class GearViewerScreen extends WynntilsContainerScreen<GearViewerMe
         int renderWidth = Texture.GEAR_VIEWER_BACKGROUND.width();
         int renderHeight = Texture.GEAR_VIEWER_BACKGROUND.height();
 
-        InventoryScreen.renderEntityInInventoryFollowsMouse(
+        McUtils.renderEntityInInventoryFollowsMouse(
                 guiGraphics,
                 renderX,
                 renderY,
-              //  renderX + renderWidth,
-              //  renderY + renderHeight,
+                renderX + renderWidth,
+                renderY + renderHeight,
                 30,
-            //    0.2f,
+                0.2f,
                 mouseX,
                 mouseY,
                 player);//todo

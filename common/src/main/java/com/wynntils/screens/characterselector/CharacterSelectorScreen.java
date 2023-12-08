@@ -407,16 +407,16 @@ public final class CharacterSelectorScreen extends WynntilsScreen {
         final int renderWidth = (int) (this.width * 0.128f);
         final int renderHeight = (int) (this.height * 0.5f);
 
-        InventoryScreen.renderEntityInInventoryFollowsMouse(
+        McUtils.renderEntityInInventoryFollowsMouse(
                 guiGraphics,
                 renderX,
                 renderY,
                 renderX + renderWidth,
                 renderY + renderHeight,
                 scale,
-       //         0,
-              //  renderX + renderWidth / 2,todo?
-            //    renderY + renderHeight / 2,
+                0,
+                renderX + renderWidth / 2,//todo?
+                renderY + renderHeight / 2,
                 McUtils.player());
     }
 
