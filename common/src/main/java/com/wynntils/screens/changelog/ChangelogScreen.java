@@ -121,14 +121,14 @@ public final class ChangelogScreen extends WynntilsScreen implements WynntilsPag
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double deltaX, double deltaY) {
+    public boolean mouseScrolled(double mouseX, double mouseY, double deltaY) {
         if (deltaY > 0) {
             setCurrentPage(getCurrentPage() - 1);
         } else if (deltaY < 0) {
             setCurrentPage(getCurrentPage() + 1);
         }
 
-        return super.mouseScrolled(mouseX, mouseY, deltaX, deltaY);
+        return super.mouseScrolled(mouseX, mouseY,  deltaY);
     }
 
     private void calculateRenderTasks() {

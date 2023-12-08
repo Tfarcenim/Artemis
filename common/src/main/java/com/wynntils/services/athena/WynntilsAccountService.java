@@ -133,7 +133,7 @@ public final class WynntilsAccountService extends Service {
             McUtils.mc()
                     .getMinecraftSessionService()
                     .joinServer(
-                            McUtils.mc().getUser().getProfileId(),
+                            McUtils.mc().getUser().getGameProfile(),
                             McUtils.mc().getUser().getAccessToken(),
                             s1.toLowerCase(Locale.ROOT));
 

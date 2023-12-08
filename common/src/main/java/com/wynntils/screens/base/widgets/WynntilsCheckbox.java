@@ -7,6 +7,7 @@ package com.wynntils.screens.base.widgets;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.wynntils.utils.colors.CommonColors;
 import com.wynntils.utils.colors.CustomColor;
+import com.wynntils.utils.mc.McUtils;
 import com.wynntils.utils.render.FontRenderer;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -39,6 +40,9 @@ public class WynntilsCheckbox extends Checkbox {
         this.color = color.asInt();
     }
 
+    private static final ResourceLocation TEXTURE = new ResourceLocation("textures/gui/checkbox.png");
+
+
     @Override
     public void renderWidget(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
         RenderSystem.enableDepthTest();
@@ -46,19 +50,14 @@ public class WynntilsCheckbox extends Checkbox {
         guiGraphics.setColor(1.0F, 1.0F, 1.0F, this.alpha);
         RenderSystem.enableBlend();
         ResourceLocation resourceLocation;
-        if (this.selected) {
-            resourceLocation = this.isFocused() ? CHECKBOX_SELECTED_HIGHLIGHTED_SPRITE : CHECKBOX_SELECTED_SPRITE;
-        } else {
-            resourceLocation = this.isFocused() ? CHECKBOX_HIGHLIGHTED_SPRITE : CHECKBOX_SPRITE;
-        }
 
-        guiGraphics.blitSprite(resourceLocation, this.getX(), this.getY(), 20, this.height);
+        guiGraphics.blit(TEXTURE, this.getX(), this.getY(), this.isFocused() ? 20.0f : 0.0f, this.selected ? 20.0f : 0.0f, 20, this.height, 64, 64);
         guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
         if (this.showLabel) {
             int start = this.getX() + this.width + 2;
             int end = start + this.maxTextWidth;
 
-            renderScrollingString(
+            McUtils.renderScrollingString(
                     guiGraphics,
                     font,
                     this.getMessage(),

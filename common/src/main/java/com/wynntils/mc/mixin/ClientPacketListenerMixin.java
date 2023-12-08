@@ -17,10 +17,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.ReceivingLevelScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.multiplayer.ClientPacketListener;
+import net.minecraft.client.multiplayer.ClientRegistryLayer;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.telemetry.WorldSessionTelemetryManager;
 import net.minecraft.commands.SharedSuggestionProvider;
+import net.minecraft.core.LayeredRegistryAccess;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.ChatType;
@@ -48,7 +50,7 @@ public abstract class ClientPacketListenerMixin  {
     private CommandDispatcher<SharedSuggestionProvider> commands;
 
     @Shadow
-    private RegistryAccess.Frozen registryAccess;
+    private LayeredRegistryAccess<ClientRegistryLayer> registryAccess;
 
     @Shadow
     private MessageSignatureCache messageSignatureCache;
@@ -384,7 +386,7 @@ public abstract class ClientPacketListenerMixin  {
         if (event.isMessageChanged()) {
             // We know this is present because of the injection point
             ChatType.Bound bound =
-                    packet.chatType().resolve(this.registryAccess).get();
+                    packet.chatType().resolve(this.registryAccess.compositeAccess()).get();
 
             this.minecraft.getChatListener().handlePlayerChatMessage(playerChatMessage, playerInfo.getProfile(), bound);
             this.messageSignatureCache.push(playerChatMessage);

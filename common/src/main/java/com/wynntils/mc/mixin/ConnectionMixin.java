@@ -30,7 +30,7 @@ public abstract class ConnectionMixin {
     }
 
     @Inject(
-            method = "sendPacket(Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketSendListener;Z)V",
+            method = "sendPacket",
             at = @At("HEAD"),
             cancellable = true)
     private void sendPre(Packet<?> packet, PacketSendListener sendListener, boolean flush, CallbackInfo ci) {

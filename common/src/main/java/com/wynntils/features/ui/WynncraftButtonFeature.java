@@ -81,7 +81,7 @@ public class WynncraftButtonFeature extends Feature {
 
     private ServerData getWynncraftServer() {
         ServerData wynncraftServer = new ServerData(
-                "Wynncraft", serverType.get().serverAddressPrefix + WYNNCRAFT_DOMAIN, ServerData.Type.OTHER);
+                "Wynncraft", serverType.get().serverAddressPrefix + WYNNCRAFT_DOMAIN, false);
         wynncraftServer.setResourcePackStatus(
                 loadResourcePack.get() ? ServerData.ServerPackStatus.ENABLED : ServerData.ServerPackStatus.DISABLED);
 

@@ -8,6 +8,7 @@ import com.wynntils.core.events.MixinHelper;
 import com.wynntils.mc.event.ConnectionEvent;
 import com.wynntils.mc.event.ResourcePackEvent;
 import com.wynntils.utils.mc.McUtils;
+import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.game.ClientboundDisconnectPacket;
 import net.minecraft.network.protocol.game.ClientboundResourcePackPacket;
@@ -17,10 +18,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ClientGamePacketListener.class)
+@Mixin(ClientPacketListener.class)
 public abstract class ClientCommonPacketListenerImplMixin {
     @Inject(
-            method = "handleResourcePack(Lnet/minecraft/network/protocol/common/ClientboundResourcePackPacket;)V",
+            method = "handleResourcePack",
             at = @At("HEAD"),
             cancellable = true)
     private void handleResourcePackPre(ClientboundResourcePackPacket packet, CallbackInfo ci) {
@@ -34,7 +35,7 @@ public abstract class ClientCommonPacketListenerImplMixin {
     }
 
     @Inject(
-            method = "handleDisconnect(Lnet/minecraft/network/protocol/common/ClientboundDisconnectPacket;)V",
+            method = "handleDisconnect",
             at = @At("HEAD"))
     private void handleDisconnectPre(ClientboundDisconnectPacket packet, CallbackInfo ci) {
         // Unexpected disconnect

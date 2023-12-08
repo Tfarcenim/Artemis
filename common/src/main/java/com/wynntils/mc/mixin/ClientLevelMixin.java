@@ -17,10 +17,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientLevel.class)
 public abstract class ClientLevelMixin {
-    @Inject(method = "addEntity", at = @At("HEAD"))
-    private void addEntity(Entity entity, CallbackInfo ci) {
-        if (!(entity instanceof AbstractClientPlayer player)) return;
-
+    @Inject(method = "addPlayer", at = @At("HEAD"))
+    private void addEntity(int id,AbstractClientPlayer player, CallbackInfo ci) {
         MixinHelper.post(new PlayerJoinedWorldEvent(player));
     }
 

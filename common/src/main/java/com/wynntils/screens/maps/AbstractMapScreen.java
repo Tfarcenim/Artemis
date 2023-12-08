@@ -223,7 +223,7 @@ public abstract class AbstractMapScreen extends WynntilsScreen {
     }
 
     @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double deltaX, double deltaY) {
+    public boolean mouseScrolled(double mouseX, double mouseY, double deltaY) {
         double newZoom = currentZoom + deltaY * MOUSE_SCROLL_ZOOM_FACTOR * currentZoom;
         setZoom((float) newZoom);
 

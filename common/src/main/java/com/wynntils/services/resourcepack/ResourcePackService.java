@@ -21,6 +21,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.FilePackResources;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
+import net.minecraft.server.packs.repository.PackCompatibility;
 import net.minecraft.server.packs.repository.PackSource;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -115,17 +116,16 @@ public final class ResourcePackService extends Service {
 
         if (!file.exists()) return null;
 
-        Pack.ResourcesSupplier resourcesSupplier = new FilePackResources.FileResourcesSupplier(file, false);
-        Pack.Info info = Pack.readPackInfo(
-                "server",
-                resourcesSupplier,
-                SharedConstants.getCurrentVersion().getPackVersion(PackType.CLIENT_RESOURCES));
+        Pack.ResourcesSupplier resourcesSupplier = s -> new FilePackResources("WynnUtils Resource Pack",file, false);
+
+        Pack.Info info = Pack.readPackInfo("server", resourcesSupplier);
         return new PreloadedPack(
                 "server",
                 true,
                 resourcesSupplier,
                 Component.literal("Wynntils Resource Pack"),
                 info,
+                PackCompatibility.COMPATIBLE,
                 Pack.Position.TOP,
                 true,
                 PackSource.DEFAULT,
@@ -145,11 +145,12 @@ public final class ResourcePackService extends Service {
                 Pack.ResourcesSupplier resourcesSupplier,
                 Component component,
                 Pack.Info info,
+                PackCompatibility packCompatibility,
                 Pack.Position defaultPosition,
                 boolean fixedPosition,
                 PackSource packSource,
                 String hash) {
-            super(id, required, resourcesSupplier, component, info, defaultPosition, fixedPosition, packSource);
+            super(id, required, resourcesSupplier, component, info, packCompatibility,defaultPosition, fixedPosition, packSource);
             this.hash = hash;
         }
 

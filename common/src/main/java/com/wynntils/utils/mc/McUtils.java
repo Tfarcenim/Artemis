@@ -4,20 +4,33 @@
  */
 package com.wynntils.utils.mc;
 
+import com.mojang.blaze3d.platform.Lighting;
 import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.wynntils.core.WynntilsMod;
 import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Options;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.client.multiplayer.prediction.PredictiveAction;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.entity.EntityRenderDispatcher;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.InventoryMenu;
+import org.jetbrains.annotations.Nullable;
+import org.joml.Matrix4f;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
 /**
  * This is a "high-quality misc" class for Minecraft utilities without an aspect on Wynntils
@@ -103,5 +116,73 @@ public final class McUtils {
      */
     public static void sendChat(String message) {
         mc().getConnection().sendChat(message);
+    }
+
+    public static void renderEntityInInventoryFollowsMouse(GuiGraphics guiGraphics, int x1, int y1, int x2, int y2, int scale, float yOffset, float mouseX, float mouseY, LivingEntity entity) {
+        float f = (float)(x1 + x2) / 2.0f;
+        float g = (float)(y1 + y2) / 2.0f;
+        guiGraphics.enableScissor(x1, y1, x2, y2);
+        float h = (float)Math.atan((f - mouseX) / 40.0f);
+        float i = (float)Math.atan((g - mouseY) / 40.0f);
+        Quaternionf quaternionf = new Quaternionf().rotateZ((float)Math.PI);
+        Quaternionf quaternionf2 = new Quaternionf().rotateX(i * 20.0f * ((float)Math.PI / 180));
+        quaternionf.mul(quaternionf2);
+        float j = entity.yBodyRot;
+        float k = entity.getYRot();
+        float l = entity.getXRot();
+        float m = entity.yHeadRotO;
+        float n = entity.yHeadRot;
+        entity.yBodyRot = 180.0f + h * 20.0f;
+        entity.setYRot(180.0f + h * 40.0f);
+        entity.setXRot(-i * 20.0f);
+        entity.yHeadRot = entity.getYRot();
+        entity.yHeadRotO = entity.getYRot();
+        Vector3f vector3f = new Vector3f(0.0f, entity.getBbHeight() / 2.0f + yOffset, 0.0f);
+        renderEntityInInventory(guiGraphics, f, g, scale, vector3f, quaternionf, quaternionf2, entity);
+        entity.yBodyRot = j;
+        entity.setYRot(k);
+        entity.setXRot(l);
+        entity.yHeadRotO = m;
+        entity.yHeadRot = n;
+        guiGraphics.disableScissor();
+    }
+
+    public static void renderScrollingString(GuiGraphics guiGraphics, Font font, Component text, int i, int minX, int minY, int maxX, int maxY, int color) {
+        int j = font.width(text);
+        int k = (minY + maxY - font.lineHeight) / 2 + 1;
+        int l = maxX - minX;
+        if (j > l) {
+            int m = j - l;
+            double d = (double) Util.getMillis() / 1000.0;
+            double e = Math.max((double)m * 0.5, 3.0);
+            double f = Math.sin(1.5707963267948966 * Math.cos(Math.PI * 2 * d / e)) / 2.0 + 0.5;
+            double g = Mth.lerp(f, 0.0, (double)m);
+            guiGraphics.enableScissor(minX, minY, maxX, maxY);
+            guiGraphics.drawString(font, text, minX - (int)g, k, color);
+            guiGraphics.disableScissor();
+        } else {
+            int m = Mth.clamp(i, minX + j / 2, maxX - j / 2);
+            guiGraphics.drawCenteredString(font, text, m, k, color);
+        }
+    }
+
+    public static void renderEntityInInventory(GuiGraphics guiGraphics, float x, float y, int scale, Vector3f translate, Quaternionf pose, @Nullable Quaternionf cameraOrientation, LivingEntity entity) {
+        guiGraphics.pose().pushPose();
+        guiGraphics.pose().translate((double)x, (double)y, 50.0);
+        guiGraphics.pose().mulPoseMatrix(new Matrix4f().scaling(scale, scale, -scale));
+        guiGraphics.pose().translate(translate.x, translate.y, translate.z);
+        guiGraphics.pose().mulPose(pose);
+        Lighting.setupForEntityInInventory();
+        EntityRenderDispatcher entityRenderDispatcher = Minecraft.getInstance().getEntityRenderDispatcher();
+        if (cameraOrientation != null) {
+            cameraOrientation.conjugate();
+            entityRenderDispatcher.overrideCameraOrientation(cameraOrientation);
+        }
+        entityRenderDispatcher.setRenderShadow(false);
+        RenderSystem.runAsFancy(() -> entityRenderDispatcher.render(entity, 0.0, 0.0, 0.0, 0.0f, 1.0f, guiGraphics.pose(), guiGraphics.bufferSource(), 0xF000F0));
+        guiGraphics.flush();
+        entityRenderDispatcher.setRenderShadow(true);
+        guiGraphics.pose().popPose();
+        Lighting.setupFor3DItems();
     }
 }

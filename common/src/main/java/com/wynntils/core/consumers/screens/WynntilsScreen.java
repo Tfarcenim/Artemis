@@ -44,6 +44,18 @@ public abstract class WynntilsScreen extends Screen implements TextboxScreen {
         }
     }
 
+    public void renderBackground(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        if (this.minecraft.level != null) {
+            this.renderTransparentBackground(guiGraphics);
+        } else {
+            this.renderDirtBackground(guiGraphics);
+        }
+    }
+
+    public void renderTransparentBackground(GuiGraphics guiGraphics) {
+        guiGraphics.fillGradient(0, 0, this.width, this.height, -1072689136, -804253680);
+    }
+
     protected void doInit() {
         super.init();
     }
